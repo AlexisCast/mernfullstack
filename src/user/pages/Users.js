@@ -10,7 +10,7 @@ const Users = () => {
 			image:
 				"https://vignette.wikia.nocookie.net/catscratch/images/0/03/Gomez.png/revision/latest?cb=20180104165830",
 			places: 3,
-		},
+		}
 	];
 
 	return <UsersList items={USERS} />;
