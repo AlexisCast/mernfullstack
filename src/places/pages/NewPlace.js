@@ -6,7 +6,7 @@ import {
 	VALIDATOR_REQUIRE,
 	VALIDATOR_MINLENGTH,
 } from "../../shared/utils/validators";
-import "./NewPlace.css";
+import "./PlaceForm.css";
 import { findAllByTestId } from "@testing-library/react";
 
 const formReducer = (state, action) => {
@@ -44,6 +44,10 @@ const NewPlace = () => {
 				isValue: false,
 			},
 			description: {
+				value: "",
+				isValid: false,
+			},
+			address: {
 				value: "",
 				isValid: false,
 			},
