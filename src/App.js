@@ -24,20 +24,48 @@ const App=()=>{
 	const logout=useCallback(()=>{
 		setIsLoogedIn(false);
 	},[]);
+	
+	let routes;
+	if(isLoggedIn){
+		routes=(
+			routes=(
+				<Switch>
+					<Route path="/" exact component={Users} />
+					<Route path="/:userId/places" exact component={UserPlaces} />
+					<Route path="/auth" exact component={Auth} />
+					<Route path="/places/new" exact component={NewPlace} />
+					<Route path="/places/:placeId" exact component={UpdatePlace} />
+					<Redirect to="/" />
+				</Switch>
+			)
+		);
+	}else{
+		routes=(
+			<Switch>
+				<Route path="/" exact component={Users} />
+				<Route path="/:userId/places" exact component={UserPlaces} />
+				<Route path="/auth" exact component={Auth} />
+				<Redirect to="/auth" />
+			</Switch>
+		)
+	}
 
 	return (
 		<AuthContext.Provider value={{isLoggedIn:isLoggedIn, login:login, logout:logout}}>
 			<Router>
 				<MainNavigation />
 				<main>
-					<Switch>
+					
+						{routes}
+						{/*<Switch>
 						<Route path="/" exact component={Users} />
 						<Route path="/:userId/places" exact component={UserPlaces} />
 						<Route path="/places/new" exact component={NewPlace} />
 						<Route path="/places/:placeId" exact component={UpdatePlace} />
 						<Route path="/auth" exact component={Auth} />
-						<Redirect to="/" />
-					</Switch>
+						<Redirect to="/" /> 
+						</Switch>*/}
+					
 				</main>
 			</Router>
 		</AuthContext.Provider>
